@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { Grid, ListItem, ListItemText, ListItemAvatar, Avatar, Typography } from '@mui/material';
 import axios from "axios";
 import { useStyles } from "../styles/profilePageData";
+import { useSelector } from "react-redux";
 
-// temp data
-const accessToken = process.env.REACT_APP_SPOTIFY_ACCESS_TOKEN;
 
 const TopTracks = () => {
   const classes = useStyles();
   const [userTopTracks, setUserTopTracks] = useState([]);
+  const accessToken = useSelector(state => state.spotify.accessToken);
 
   useEffect(() => {
     const getApiData = async () => {
@@ -31,7 +31,8 @@ const TopTracks = () => {
   }, []);
 
   return (
-    <Grid container spacing={2} >
+    <>
+    {userTopTracks ? <Grid container spacing={2} >
       {userTopTracks.map((track, index) => (
         <Grid item key={index} xs={12} sm={6} md={4} >
           <ListItem className={classes.listItem} style={{width: '300px'}}>
@@ -69,7 +70,8 @@ const TopTracks = () => {
           </ListItem>
         </Grid>
       ))}
-    </Grid>
+    </Grid> : <p>You don't have any top tracks!</p> }
+    </>
   );
 };
 

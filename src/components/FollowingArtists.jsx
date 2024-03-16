@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import { Grid, ListItem, ListItemText, ListItemAvatar, Avatar, Typography } from '@mui/material';
 import axios from "axios";
 import { useStyles } from "../styles/profilePageData";
-
-// temp data
-const accessToken = process.env.REACT_APP_SPOTIFY_ACCESS_TOKEN;
+import { useSelector } from 'react-redux';
 
 const FollowingArtists = () => {
   const classes = useStyles();
   const [userArtists, setUserArtists] = useState([]);
+  const accessToken = useSelector(state => state.spotify.accessToken);
 
   useEffect(() => {
     const getApiData = async () => {
@@ -31,7 +30,8 @@ const FollowingArtists = () => {
   }, []);
 
   return (
-    <Grid container spacing={2}>
+    <>
+    {userArtists? <Grid container spacing={2}>
       {userArtists.map((artist, index) => (
         <Grid item key={index} xs={12} sm={6} md={4} >
           <ListItem className={classes.listItem} style={{width: '300px'}}>
@@ -69,7 +69,8 @@ const FollowingArtists = () => {
           </ListItem>
         </Grid>
       ))}
-    </Grid>
+    </Grid> : <p>You don't follow any artists!</p>}
+    </>
   );
 };
 

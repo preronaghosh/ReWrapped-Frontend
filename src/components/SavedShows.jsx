@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import { Grid, ListItem, ListItemText, ListItemAvatar, Avatar, Typography } from '@mui/material';
 import axios from "axios";
 import { useStyles } from "../styles/profilePageData";
-
-// temp data
-const accessToken = process.env.REACT_APP_SPOTIFY_ACCESS_TOKEN;
+import { useSelector } from "react-redux";
 
 const SavedShows = () => {
   const classes = useStyles();
   const [savedShowsList, setSavedShowsList] = useState([]);
+  const accessToken = useSelector(state => state.spotify.accessToken);
 
   useEffect(() => {
     const getApiData = async () => {
@@ -32,7 +31,8 @@ const SavedShows = () => {
   }, []);
 
   return (
-    <Grid container spacing={2}>
+    <>
+    {savedShowsList ? <Grid container spacing={2}>
       {savedShowsList.map((show, index) => (
         <Grid item key={index} xs={12} sm={6} md={4} >
           <ListItem className={classes.listItem} style={{width: '300px'}}>
@@ -70,7 +70,8 @@ const SavedShows = () => {
           </ListItem>
         </Grid>
       ))}
-    </Grid>
+    </Grid> : <p>You don't have any saved shows!</p>}
+    </>
   );
 };
 
