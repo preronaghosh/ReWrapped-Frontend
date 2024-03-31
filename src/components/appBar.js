@@ -12,12 +12,15 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import { getSpotifyAuthorizationCode, exchangeSpotifyToken } from "../utility/spotifyAuth";
+import {
+  getSpotifyAuthorizationCode,
+  exchangeSpotifyToken,
+} from "../utility/spotifyAuth";
 
-const pages = ["Create Playlist"];
+const pages = ["Create Playlist", "Recommendations"];
 const settings = ["Profile", "Connect Spotify", "Logout"];
 
 const logout = async () => {
@@ -34,20 +37,19 @@ const logout = async () => {
   }
 };
 
-
 const handleSpotifyConnect = () => {
   const authorizationEndpoint = "https://accounts.spotify.com/authorize";
   const queryParams = new URLSearchParams({
     client_id: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
     redirect_uri: "http://localhost:3000/dashboard",
-    scope: "user-read-private user-read-email user-top-read user-library-read playlist-read-private",
+    scope:
+      "user-read-private user-read-email user-top-read user-library-read playlist-read-private",
     response_type: "code",
   });
 
   const authorizationURL = `${authorizationEndpoint}?${queryParams.toString()}`;
   window.location.href = authorizationURL;
 };
-
 
 function ResponsiveAppBar() {
   const navigate = useNavigate();
@@ -74,6 +76,9 @@ function ResponsiveAppBar() {
     switch (clicked) {
       case "Create Playlist":
         navigate("/createPlaylist");
+        break;
+      case "Recommendations":
+        navigate('/recommendations');
         break;
       default:
         console.log("No actions", clicked);
@@ -111,8 +116,8 @@ function ResponsiveAppBar() {
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            component={Link}
+            to="/dashboard"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -166,8 +171,8 @@ function ResponsiveAppBar() {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+            component={Link}
+            to="/dashboard"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },

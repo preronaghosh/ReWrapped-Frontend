@@ -8,8 +8,9 @@ import ListeningTrendsGraph from "../components/listeningTrendsGraph";
 import TopGenresGraph from "../components/topGenresGraph";
 import StatsCard from "../components/statsCard";
 import TopSongCard from "../components/TopSongCard"
+import { useDispatch } from "react-redux";
+import { userDetailsActions } from "../slices/user/user-details-slice";
 // Supports weights 100-900
-import '@fontsource-variable/work-sans';
 // todo: temp data until backend is done
 
 const topSongCardData = {
@@ -75,8 +76,13 @@ const sampleSongData = [
 const sampleListeningData = [];
 
 function Dashboard() {
+  const dispatch = useDispatch();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+
+  // get user's email from localStorage
+  const currUserEmail = sessionStorage.getItem('currentUserEmail');
+  dispatch(userDetailsActions.setUserEmail(currUserEmail));
 
   const name = queryParams.get("displayName");
 
@@ -87,7 +93,7 @@ function Dashboard() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_LOCAL}/recently-played/${name}`
+          `${process.env.REACT_APP_API_LOCAL}/api/recently-played/${name}`
         );
         const jsonData = await response.json();
         setData(jsonData);
@@ -103,7 +109,7 @@ function Dashboard() {
     const fetchRcData = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_LOCAL}/recommended/${name}`
+          `${process.env.REACT_APP_API_LOCAL}/api/recommended/${name}`
         );
         const jsonData = await response.json();
         setRcData(jsonData);
@@ -125,7 +131,7 @@ function Dashboard() {
 
       <Container maxWidth="lg" style={{ padding: "24px" }}>
         <Grid>
-          <Typography ml={25} mt={10} variant="h3" style={{ fontFamily: "Work Sans Variable, sans-serif", fontWeight: 'bold' }}>
+          <Typography ml={25} mt={10} variant="h3" style={{ fontFamily: "sans-serif", fontWeight: 'bold' }}>
             Spotify ReWrapped.
           </Typography>
           <Typography ml={25} mt={2} mb={5} variant="subtitle1" color="#61758A">
@@ -164,7 +170,7 @@ function Dashboard() {
                 data={"4"}
                 subtitle={"All Time 4"}
               />
-              <TopGenresGraph userData={sampleListeningData} />
+              <TopGenresGraph userId={name} />
             </Box>
           </Box>
         </Grid>
@@ -173,7 +179,7 @@ function Dashboard() {
           <Grid item xs={12}>
             <Typography
               padding="5px"
-              style={{ fontFamily: "Work Sans Variable, sans-serif", fontWeight: 'bold', textAlign: 'left' }}
+              style={{ fontFamily: "sans-serif", fontWeight: 'bold', textAlign: 'left' }}
               variant="h5"
               gutterBottom
             >
@@ -184,7 +190,7 @@ function Dashboard() {
           <Grid item xs={12}>
             <Typography
               padding="5px"
-              style={{ fontFamily: "Work Sans Variable, sans-serif", fontWeight: 'bold', textAlign: 'left' }}
+              style={{ fontFamily: "sans-serif", fontWeight: 'bold', textAlign: 'left' }}
               variant="h5"
               gutterBottom
             >
