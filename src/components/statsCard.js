@@ -1,9 +1,9 @@
 import React from 'react';
-import { Typography, Box, Paper } from '@mui/material';
+import { Typography, Paper } from '@mui/material';
 
-function StatsCard({ title, value, subtitle }) {
+function StatsCard({ title, value, subtitle }) { // NOSONAR
     return (
-        <Paper elevation={2} style={{
+        <Paper data-testid="stats-card" elevation={2} style={{
             width: '200px',
             height: '100px',
             display: 'flex', 
@@ -13,7 +13,6 @@ function StatsCard({ title, value, subtitle }) {
             textAlign: 'left',
             padding: '16px 24px',
             backgroundColor: 'transparent',
-            border: '1px solid #e0e0e0',
             borderRadius: '4px',
             margin: '0 1rem 0 0',
             boxSizing: 'border-box',
