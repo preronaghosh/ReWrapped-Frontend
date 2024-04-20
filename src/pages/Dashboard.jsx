@@ -185,7 +185,7 @@ function Dashboard() {
             >
               Top Songs from your friends
             </Typography>
-            {/* <SongList musicData={rcData} /> */}
+            <SongList musicData={rcData} />
           </Grid>
           <Grid item xs={12}>
             <Typography
@@ -196,7 +196,7 @@ function Dashboard() {
             >
               Based on your groups listening history
             </Typography>
-            {/* <SongList musicData={rpData} /> */}
+            <SongList musicData={rpData} />
           </Grid>
         </Grid>
       </Container>
