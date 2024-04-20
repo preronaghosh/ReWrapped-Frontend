@@ -8,49 +8,6 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from "axios";
 
-const staticRecommendationsData = [
-    {
-        nameOfSong: "Live From Space",
-        nameOfArtist: "Mac Miller",
-        songImage: "https://plus.unsplash.com/premium_photo-1664361480105-33afc4559c40?q=80&w=1846&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    },
-    {
-        nameOfSong: "Hotel California",
-        nameOfArtist: "Eagles",
-        songImage: "https://plus.unsplash.com/premium_photo-1664361480105-33afc4559c40?q=80&w=1846&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    },
-    {
-        nameOfSong: "Rolling in the Deep",
-        nameOfArtist: "Adele",
-        songImage: "https://plus.unsplash.com/premium_photo-1664361480105-33afc4559c40?q=80&w=1846&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    },
-    {
-        nameOfSong: "Smells Like Teen Spirit",
-        nameOfArtist: "Nirvana",
-        songImage: "https://plus.unsplash.com/premium_photo-1664361480105-33afc4559c40?q=80&w=1846&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    },
-    {
-        nameOfSong: "Billie Jean",
-        nameOfArtist: "Michael Jackson",
-        songImage: "https://plus.unsplash.com/premium_photo-1664361480105-33afc4559c40?q=80&w=1846&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    },
-    {
-        nameOfSong: "Purple Rain",
-        nameOfArtist: "Prince",
-        songImage: "https://plus.unsplash.com/premium_photo-1664361480105-33afc4559c40?q=80&w=1846&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    },
-    {
-        nameOfSong: "Yesterday",
-        nameOfArtist: "The Beatles",
-        songImage: "https://plus.unsplash.com/premium_photo-1664361480105-33afc4559c40?q=80&w=1846&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    },
-    {
-        nameOfSong: "Lose Yourself",
-        nameOfArtist: "Eminem",
-        songImage: "https://plus.unsplash.com/premium_photo-1664361480105-33afc4559c40?q=80&w=1846&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    },
-];
-
 const Recommendations = () => {
     const topArtistSeeds = useSelector(state => state.spotify.seed_top_artists);
     const topTrackSeeds = useSelector(state => state.spotify.seed_top_tracks);
