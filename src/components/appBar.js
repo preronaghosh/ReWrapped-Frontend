@@ -112,7 +112,6 @@ function ResponsiveAppBar() {
     <AppBar position="static" color="transparent">
       <Container maxWidth="xxl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -128,7 +127,7 @@ function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           >
-            S.R
+            SR
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

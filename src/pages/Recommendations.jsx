@@ -63,9 +63,9 @@ const Recommendations = () => {
             {isLoading && <CircularProgress sx={{ marginLeft: '50%', marginTop: "20px" }} />}
             {!isLoading && <Box sx={{ gap: 2, display: "flex", flexDirection: "column" }}>
                 <RecommendationCard
-                    nameOfSong={recommendationData.length !== 0 ? recommendationData[currIndex].name : staticRecommendationsData[currIndex].nameOfSong}
-                    nameOfArtist={recommendationData.length !== 0 ? recommendationData[currIndex].artists[0].name : staticRecommendationsData[currIndex].nameOfArtist}
-                    songImage={recommendationData.length !== 0 ? recommendationData[currIndex].album.images[0].url : staticRecommendationsData[currIndex].songImage}
+                    nameOfSong={recommendationData[currIndex].name}
+                    nameOfArtist={recommendationData[currIndex].artists[0].name}
+                    songImage={recommendationData[currIndex].album.images[0].url}
                 />
 
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

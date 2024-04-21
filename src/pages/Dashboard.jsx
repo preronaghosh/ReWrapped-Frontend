@@ -167,8 +167,8 @@ function Dashboard() {
             <Box sx={{ ml: 1 }}>
               <StatsCard
                 title={"Top Genres"}
-                data={"4"}
-                subtitle={"All Time 4"}
+                data={"3"}
+                subtitle={"All Time 3"}
               />
               <TopGenresGraph userId={name} />
             </Box>
